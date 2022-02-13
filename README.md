@@ -9,6 +9,7 @@ For normal training and evaluation we should install the package from source usi
 git clone https://github.com/PhongPX1603/components_yolov4.git
 cd components_yolov4/
 pip install -U PyYAML
+pip install -r requirements.txt
 ```
 
 #### Download pretrained weights
@@ -50,3 +51,63 @@ pip install -U PyYAML
                     ├── train.py 
                     └── test.py
 ```
+
+## Dataset
+* Data more 200 "Electric Components" images.
+* Data divided into 2 parts: train and valid folders.
+
+| Name  | Train | Valid | Test | Label's Format |
+| ---   | ---         |     ---      |  --- |   --- |
+| Electric Components | 167 |  39    |  ---   | json or txt    |
+
+
+## How to Run
+### Clone github
+* Run the script below to clone my github.
+```
+git clone https://github.com/PhongPX1603/detect_electric_components.git
+```
+
+### Training
+* Trained by pytorch-ignite framework. Install: ```pip install pytorch-ignite```
+* Dataset structure
+```
+dataset
+    ├── train
+    │   ├── img1.jpg
+    │   ├── img1.json
+    |   ├── img2.jpg
+    |   ├── img2.json
+    │   └── ...
+    │   
+    └── valid
+        ├── img1.jpg
+        ├── img1.json
+        ├── img2.jpg
+        ├── img2.json
+        └── ...
+```
+* Change your direct of dataset folder in ```config/electric_labelme_training.yaml```
+* Run the script below to train the model. Specify particular name to identify your experiment:
+```python train.py --cfg cfg/yolov4.cfg --device 0 --batch-size 4 --img 640 640 --data components.yaml --name components_tiny```
+
+
+### Test
+* Change your direct of test dataset folder and weights file in ```config/electric_labelme_testing.yaml```
+* Run the script below to test the model:
+```python test.py --img 640 --conf 0.001 --batch 8 --device 0 --data components.yaml --cfg cfg/yolov4.cfg --weights weights/best.pt```
+
+
+## Inference
+* You can use this script to make inferences on particular folder
+* Result are saved at <output/img.jpg> if type inference is 'image' or <video-output.mp4> with 'video or webcam' type.
+```
+cd inference
+python inference.py --type-inference 'image' --input-dir <image dir> --video-output <video_output.mp4>
+                                     'video'             <video dir>
+                                     'webcam'            0
+```
+
+
+## Contributor
+*Xuan-Phong Pham*
