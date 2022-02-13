@@ -1,0 +1,9 @@
+# train and val datasets (image directory or *.txt file with image paths)
+train: ../components_data/train
+val: ../components_data/valid
+
+# number of classes
+nc: 5
+
+# class names
+names: ['capacitor', 'diode', 'IC', 'resistor', 'transistor']
