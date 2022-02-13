@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 #### Download pretrained weights
 
-| Model | Test_size | AP50 | Cfg | Weights |
+| Model | Test_size | AP50 | cfg | weights |
 | ---   | ---       |     ---  |  ---|   ---   |
 | YOLOv4 | 640 |  74.7%    | [cfg](https://drive.google.com/file/d/1FWggnicui0lNfPb34nbYP2uZE_6BooIM/view?usp=sharing) | [weights](https://drive.google.com/file/d/11Cy4QNBRZhtGfRVoF5IKwnVxmUL5dlCk/view?usp=sharing) |
 | YOLOv4-tiny | 640 |  62.4%    | [cfg](https://drive.google.com/file/d/1FaxNbf1iGsDx2FFo2Lr4xpDSdFocAs4e/view?usp=sharing) | [weights](https://drive.google.com/file/d/10_WhvSrYQaciyATPG5fQ7mdnM14MkSc5/view?usp=sharing) |
@@ -58,7 +58,7 @@ pip install -r requirements.txt
 
 | Name  | Train | Valid | Test | Label's Format |
 | ---   | ---         |     ---      |  --- |   --- |
-| Electric Components | 167 |  39    |  ---   | json or txt    |
+| Electric Components | 167 |  39    |  ---   | txt    |
 
 
 ## How to Run
@@ -69,31 +69,30 @@ git clone https://github.com/PhongPX1603/detect_electric_components.git
 ```
 
 ### Training
-* Trained by pytorch-ignite framework. Install: ```pip install pytorch-ignite```
 * Dataset structure
 ```
 dataset
     ├── train
     │   ├── img1.jpg
-    │   ├── img1.json
+    │   ├── img1.txt
     |   ├── img2.jpg
-    |   ├── img2.json
+    |   ├── img2.txt
     │   └── ...
     │   
     └── valid
         ├── img1.jpg
-        ├── img1.json
+        ├── img1.txt
         ├── img2.jpg
-        ├── img2.json
+        ├── img2.txt
         └── ...
 ```
-* Change your direct of dataset folder in ```config/electric_labelme_training.yaml```
-* Run the script below to train the model. Specify particular name to identify your experiment:
-```python train.py --cfg cfg/yolov4.cfg --device 0 --batch-size 4 --img 640 640 --data components.yaml --name components_tiny```
+* Change your direct of dataset folder in ```cfg/yolov4.yaml```
+* Run the script below to train the model:
+```python train.py --cfg cfg/yolov4.cfg --device 0 --batch-size 4 --img 640 --data components.yaml --name components_tiny```
 
 
 ### Test
-* Change your direct of test dataset folder and weights file in ```config/electric_labelme_testing.yaml```
+* After train, we have weights files. Use best.pt weights file to test model.
 * Run the script below to test the model:
 ```python test.py --img 640 --conf 0.001 --batch 8 --device 0 --data components.yaml --cfg cfg/yolov4.cfg --weights weights/best.pt```
 
