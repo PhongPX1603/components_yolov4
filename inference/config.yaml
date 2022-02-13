@@ -1,0 +1,29 @@
+module: detector
+name: Predictor
+Predictor:
+  model:
+    module: model
+    name: Darknet
+    Darknet:
+      cfg: '''../cfg/yolov4-tiny.cfg'''
+  weight_path: '''../weights/component_yolov4_tiny.pt'''
+  batch_size: 1
+  image_size: 640
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+  # anchors: [
+  #   [[12, 16], [19, 36], [40, 28]],
+  #   [[36, 75], [76, 55], [72, 146]],
+  #   [[142, 110], [192, 243], [459, 401]]
+  # ]
+  anchors: [
+    [[10,14], [23,27]],
+    [[37,58], [81,82]],
+    [[135,169], [344,319]]
+  ]
+  # 10,14,  23,27,  37,58,  81,82,  135,169,  344,319
+  score_threshold: 0.5
+  iou_threshold: 0.4
+  classes: '''../data/components.names'''
+  device: '''cuda'''
+# 12, 16, 19, 36, 40, 28, 36, 75, 76, 55, 72, 146, 142, 110, 192, 243, 459, 401
