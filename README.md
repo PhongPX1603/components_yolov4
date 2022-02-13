@@ -1,13 +1,13 @@
 # components_yolov4
 
+![test_pxp_Trim](https://user-images.githubusercontent.com/86842861/153745243-672e8ab1-da3b-4c3a-98d3-ed265defff94.gif)
+
 ## Installation
 ### Installing from source
 
 For normal training and evaluation we should install the package from source using colab environment.
 
 ```bash
-git clone https://github.com/PhongPX1603/components_yolov4.git
-cd components_yolov4/
 pip install -U PyYAML
 pip install -r requirements.txt
 ```
@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 ## Project Structure
 ```
-    detect_electric_components
+            components_yolov4
                     |
                     ├── cfg
                     |	  ├── yolov4-tiny.cfg
@@ -64,7 +64,8 @@ pip install -r requirements.txt
 ### Clone github
 * Run the script below to clone my github.
 ```
-git clone https://github.com/PhongPX1603/detect_electric_components.git
+git clone https://github.com/PhongPX1603/components_yolov4.git
+cd components_yolov4
 ```
 
 ### Training
@@ -101,11 +102,16 @@ dataset
 * Result are saved at <output/img.jpg> if type inference is 'image' or <video-output.mp4> with 'video or webcam' type.
 ```
 cd inference
-python inference.py --type-inference 'image' --input-dir <image dir> --video-output <video_output.mp4>
-                                     'video'             <video dir>
+python inference.py --type-inference 'image' --input-dir <image dir> --output-dir <folder output>
+                                     'video'             <video dir> --video-output <video_output.mp4>
                                      'webcam'            0
 ```
+![0060](https://user-images.githubusercontent.com/86842861/153745081-df31a0a5-19ca-4d20-9a2f-07c6658c11df.jpg)
 
+
+## feature
+* Apply deepsort to tracking object (https://arxiv.org/pdf/1703.07402.pdf)
+* With deepsort, we'll not process on each frame. Instead of we are tracking objects appearance on prior frame
 
 ## Contributor
 *Xuan-Phong Pham*
