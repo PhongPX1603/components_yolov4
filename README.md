@@ -113,5 +113,8 @@ python inference.py --type-inference 'image' --input-dir <image dir> --output-di
 * Apply deepsort to tracking object (https://arxiv.org/pdf/1703.07402.pdf)
 * With deepsort, we'll not process on each frame. Instead of we are tracking objects appearance on prior frame
 
+## Acknowledgements
+* https://github.com/WongKinYiu/PyTorch_YOLOv4
+
 ## Contributor
 *Xuan-Phong Pham*
